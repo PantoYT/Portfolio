@@ -1,0 +1,12 @@
+====================
+avatar
+audio player w sound visualizer
+bio
+====================
+navbar
+	Sections
+====================
+pixel art details
+gradients?
+links to other projects
+hub for other projects
