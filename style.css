@@ -14,8 +14,8 @@ body {
 }
 
 .sidebar {
-    background: #C58ADF;
-    background: linear-gradient(138deg,rgba(197, 138, 223, 1) 0%, rgba(45, 63, 189, 1) 55%, rgba(3, 5, 37, 1) 100%);
+    background: #6E66E4;
+    background: linear-gradient(180deg,rgba(110, 102, 228, 1) 0%, rgba(200, 139, 226, 1) 28%, rgba(124, 88, 156, 1) 72%, rgba(37, 52, 154, 1) 100%);
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -49,6 +49,18 @@ body {
 main section {
     padding: 15px;
     color: white;
+    scroll-margin-top: 100px;
+}
+main {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #121212;
+    z-index: 1;
 }
 .nav-button {
         background: #C58ADF;
