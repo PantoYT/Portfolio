@@ -120,6 +120,10 @@ main {
   box-shadow: 0 0 15px rgba(107, 99, 255, 0.5);
 }
 
+.project-frame a {
+  text-decoration: none;
+}
+
 .project-frame img {
   max-width: 100%;
   border-radius: 4px;
