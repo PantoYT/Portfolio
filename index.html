@@ -1,62 +1,238 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <link rel="shortcut icon" href="assets/avatar.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+
+<link rel="shortcut icon" href="assets/avatar.png">
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-    <div class="layout">
-        <div class="sidebar">
-            <aside>
-                <div class="avatar">
-                    <img src="assets/avatar.png" alt="insert_avatar_here">
-                </div>
-                <div class="player">
-                    <h1>To do</h1>
-                    <p>Song name</p>
-                    <hr>
-                    <div>
-                        <p>Audio Visualizer</p>
-                        <p>Play button</p>
-                    </div>
-                </div>
-                <div class="bio">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p>
-                </div>
-            </aside>
-        </div>
-        <main>
-            <nav>
-                <div class="navbar"> 
-                    <a href="#1" class="nav-button">Sekcja 1</a>
-                    <a href="#2" class="nav-button">Sekcja 2</a>
-                    <a href="#3" class="nav-button">Sekcja 3</a>
-                    <a href="#4" class="nav-button">Sekcja 4</a>
-                    <a href="#5" class="nav-button">Sekcja 5</a>
-                    <a href="#6" class="nav-button">Sekcja 6</a>
-                    <a href="#7" class="nav-button">Sekcja 7</a>
-                    <a href="#8" class="nav-button">Sekcja 8</a>
-                    <a href="#9" class="nav-button">Sekcja 9</a>
-                    <a href="#10" class="nav-button">Sekcja 10</a>
-                </div>
-                <hr>
-            </nav>
-            <section id="1"><p>1.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="2"><p>2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="3"><p>3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="4"><p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="5"><p>5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="6"><p>6.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="7"><p>7. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="8"><p>8. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="9"><p>9. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <section id="10"><p>10. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at malesuada dolor. Ut maximus mollis risus, in maximus elit ultrices a. Nulla auctor, nulla at suscipit accumsan, ante nulla accumsan risus, at condimentum orci lorem eu ex. Sed congue metus ligula, non pharetra nulla condimentum nec. Pellentesque et diam sed mauris mattis accumsan vel sollicitudin velit. Nam eget massa mi. Cras suscipit ornare rutrum.</p></section>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </main>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="avatar">
+      <img src="assets/avatar.png" alt="avatar">
     </div>
+
+    <div class="socials">
+      <a href="https://github.com/PantoYT" target="_blank"><img src="assets/github.png" alt="github"></a>
+      <a href="https://www.youtube.com/@pantoyt" target="_blank"><img src="assets/youtube.png" alt="youtube"></a>
+      <a href="https://steamcommunity.com/id/pantoyt/" target="_blank"><img src="assets/steam.png" alt="steam"></a>
+    </div>
+
+    <div class="bio">
+      <p>My name is Wojciech Hałasa. I am a programming student based in Poland, passionate about technology, problem-solving, and building things from scratch.</p>
+    </div>
+  </aside>
+
+  <main>
+    <nav class="navbar">
+      <button data-page="projects">Projects</button>
+      <button data-page="skills">Skills</button>
+      <button data-page="contact">Contact</button>
+    </nav>
+
+    <section id="projects" class="page active">
+      <h1>Projects</h1>
+
+      <div class="project-grid">
+        <!-- Website projects -->
+        <div class="project-row">
+          <div class="project-frame">
+            <a href="https://pantoyt.github.io/Relax-Skarpety/" target="_blank">
+              <img src="assets/relax_thumb.png" alt="Relax Skarpety">
+              <p>Relax Skarpety</p>
+            </a>
+          </div>
+          <div class="project-frame">
+            <a href="#" target="_blank">
+              <img src="assets/placeholder.png" alt="Projekt 2">
+              <p>Portfolio</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Python scripts -->
+        <div class="project-card wide">
+          <h2>Python Scripts</h2>
+
+          <details>
+            <summary>Choinkonatoinator 🎄</summary>
+            <p>Console Christmas tree generator. Fun for coders and pine lovers.</p>
+            <pre><code class="language-python">import random
+while True:
+    ite=1
+    lastdeco=0
+    lastchain=0
+    rows=int(input(&quot;Podaj wysokosc choinki: &quot;))
+    while rows &lt; 5:
+        print(&quot;Rozmiar choinki jest za mały, choinka może nie być poprawnie utworzona, zalecane jest podanie rozmiaru większego niz 5&quot;)
+        print(&quot;Kontynuować? y/n&quot;)
+        czyroz=input()
+        if czyroz == &quot;y&quot;:
+            break
+        else:
+            rows=int(input(&quot;Podaj wysokosc choinki: &quot;))
+    blanks=rows-1
+    stars=1
+    for _ in range (rows):
+        if ite==1:
+            print(&quot; &quot; * blanks + &quot;@&quot;)
+            ite+=1
+            stars+=2
+            blanks-=1
+        else:
+            print(&quot; &quot; * blanks,end=&quot;&quot;)
+            if lastchain &gt; random.randint(1,10):
+                print(&quot;#&quot; * stars,end=&quot;&quot;)
+                lastdeco=0
+                lastchain=0
+            else:
+                for _ in range (stars):
+                        if lastdeco == 1:
+                            print(&quot;*&quot;,end=&quot;&quot;)
+                            lastdeco=0
+                        else:
+                            ifdeco=random.randrange(0,100)
+                            if ifdeco&gt;20:
+                                print(&quot;*&quot;,end=&quot;&quot;)
+                                lastdeco=0
+                            else:
+                                deco=random.randint(0,2)
+                                if deco == 0: print(&quot;o&quot;,end=&quot;&quot;)
+                                elif deco == 1: print(&quot;%&quot;,end=&quot;&quot;)
+                                elif deco == 2: print(&quot;&amp;&quot;,end=&quot;&quot;)
+                                lastdeco=1
+            print()
+            stars+=2
+            blanks-=1
+            lastchain+=1
+    stemsize=1
+    stemsizer=rows
+    while stemsizer&gt;5:
+        stemsize+=1
+        stemsizer-=5
+    stem=rows-(stemsize-1)//2-2
+    for _ in range (stemsize):    
+        print(&quot; &quot; * stem + &quot;{&quot; + &quot;|&quot; * stemsize + &quot;}&quot;)
+    floorlen=stars-2
+    print(&quot;#&quot;*floorlen)
+            </code></pre>
+            <a href="assets/Choinkonatoinator.py" download class="download-btn">Download</a>
+          </details>
+
+          <details>
+            <summary>Zamianoinator 🔢</summary>
+            <p>Full number converter: binary, decimal, hex with manual calculations preserved.</p>
+            <pre><code class="language-python">typ = int(input(&quot;Wybierz typ liczby z 2, 10, 16 &quot;))
+while typ not in (2,10,16):
+    print(&quot;Podany został niewłaściwy typ, spróbuj ponownie &quot;)
+    typ = int(input(&quot;Wybierz typ liczby z 2, 10, 16 &quot;))
+liczba = input(&quot;Podaj liczbe &quot;)
+if typ in (2,10):
+    liczba = int(liczba)
+
+#Zamiana liczb binarnych
+if typ == 2:
+    liczba_str = str(liczba)
+    dzielnik = 1
+    wynik_dec = 0
+    for i in range(len(liczba_str)):
+        wynik_dec += ((liczba//dzielnik)%10)*(2**i)
+        dzielnik *= 10
+    print(f&quot;Liczba binarna {liczba} w systemie dziesiętnym to {wynik_dec}&quot;)
+
+    wynik_hex=&quot;&quot;
+    trans = {10:&quot;A&quot;,11:&quot;B&quot;,12:&quot;C&quot;,13:&quot;D&quot;,14:&quot;E&quot;,15:&quot;F&quot;}
+    while (len(liczba_str))%4!=0:
+        liczba_str=&quot;0&quot;+liczba_str
+    for i in range (0,len(liczba_str),4):
+        grupa = liczba_str[i:i+4]
+        dec = int(grupa, 2)
+        if dec &gt;= 10:
+            wynik_hex += trans[dec]
+        else:
+            wynik_hex += str(dec)
+    print(f&quot;Liczba binarna {liczba} w systemie heksadecymalnym to {wynik_hex}&quot;)
+
+#Zamiana liczb dziesiętnych
+elif typ == 10:
+    liczba_org=liczba
+    wynik_bin=&quot;&quot;
+    while liczba&gt;0:
+        if liczba%2==1:
+            wynik_bin=&quot;1&quot;+wynik_bin
+        else:
+            wynik_bin=&quot;0&quot;+wynik_bin
+        liczba//=2
+    print(f&quot;Liczba dziesiętna {liczba_org} w systemie binarnym: {wynik_bin}&quot;)
+
+    wynik_hex=&quot;&quot;
+    trans = {10:&quot;A&quot;,11:&quot;B&quot;,12:&quot;C&quot;,13:&quot;D&quot;,14:&quot;E&quot;,15:&quot;F&quot;}
+    while (len(wynik_bin))%4!=0:
+        wynik_bin=&quot;0&quot;+wynik_bin
+    for i in range (0,len(wynik_bin),4):
+        grupa = wynik_bin[i:i+4]
+        dec = int(grupa, 2)
+        if dec &gt;= 10:
+            wynik_hex += trans[dec]
+        else:
+            wynik_hex += str(dec)
+    print(f&quot;Liczba dziesietna {liczba_org} w systemie heksadecymalnym to {wynik_hex}&quot;)
+
+#Zamiana liczb heksadecymalnych
+elif typ == 16:
+    wynik_bin=&quot;&quot;
+    liczba_str=str(liczba)
+    for cyfra in liczba_str:
+        if &quot;0&quot; &lt;= cyfra &lt;= &quot;9&quot;:
+            val = ord(cyfra) - ord(&quot;0&quot;)
+        else:
+            val = ord(cyfra) - ord(&quot;A&quot;)+10
+        bin_cyfra = &quot;&quot;
+        for i in range (3,-1,-1):
+            if val &amp; (1&lt;&lt;i):
+                bin_cyfra += &quot;1&quot;
+            else:
+                bin_cyfra += &quot;0&quot;
+        wynik_bin += bin_cyfra
+    print(f&quot;Liczba heksadecymalna {liczba} w systemie binarnym to {wynik_bin}&quot;)
+
+    wynik_dec = 0
+    for i in range(len(wynik_bin)):
+        wynik_dec += int(wynik_bin[len(wynik_bin)-1-i]) * (2**i)
+    print(f&quot;Liczba heksadecymalna {liczba} w systemie dziesiętnym to {wynik_dec}&quot;)
+            </code></pre>
+            <a href="assets/Zamianoinator_v1.py" download class="download-btn">Download</a>
+          </details>
+
+        </div>
+
+        <div class="project-card">
+          <p>Scrap Mechanic shenanigans 🛠️ and other fun projects...</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills" class="page">
+      <h1>Skills</h1>
+      <p>Programming, IT, robotics, engineering, problem-solving.</p>
+    </section>
+
+    <section id="contact" class="page">
+      <h1>Contact</h1>
+      <p>GitHub, email, campfire signals, Morse code, or trained carrier pigeons 🐦</p>
+    </section>
+
+  </main>
+</div>
 </body>
 </html>

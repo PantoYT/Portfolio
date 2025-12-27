@@ -1,85 +1,195 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
+html,
 body {
-    overflow: hidden;
-    background-color: #121212;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: #121212;
+  overflow: hidden;
+  font-family: "ＭＳ Ｐゴシック";
 }
 
 .layout {
-    display: grid;
-    grid-template-columns: minmax(400px, 1fr) 4fr;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100vh;
 }
 
 .sidebar {
-    background: #6E66E4;
-    background: linear-gradient(180deg,rgba(110, 102, 228, 1) 0%, rgba(200, 139, 226, 1) 28%, rgba(124, 88, 156, 1) 72%, rgba(37, 52, 154, 1) 100%);
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background: linear-gradient(180deg, #6b63ff, #4a3c8f);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
-.avatar {
-    margin: 0 auto;
-}
+
 .avatar img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 10px solid white;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.player {
-    color: white;
+
+.socials a {
+  margin: 0 5px;
 }
-.player div {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+
+.socials img {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+
+.socials a:hover img {
+  transform: scale(1.2) rotate(10deg);
 }
 
 .bio {
-    width: 300px;
-    height: 300px;
-    color: white;
-    font-family: "ＭＳ Ｐゴシック";
-    text-align: center;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  max-width: 320px;
 }
 
-main section {
-    padding: 15px;
-    color: white;
-    scroll-margin-top: 100px;
-}
 main {
-    height: 100vh;
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    background-color: #121212;
-    z-index: 1;
-}
-.nav-button {
-        background: #C58ADF;
-        text-decoration: none;
-        font-size: larger;
-        padding: 1% 2%;
-        border-radius: 5px;
-        margin: 5px;
-        color: #fff6e8;
-        transition: transform 0.2s ease-in-out,
-        background-color 0.2s ease-in-out;
-}
-.nav-button:hover {
-        transform: scale(1.1);
-    }
 .navbar {
-    padding: 12px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #333;
+}
+
+.navbar button {
+  font-size: 18px;
+  padding: 10px 30px;
+  background: linear-gradient(145deg, #3b3b3b, #2b2b2b);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar button:hover {
+  background: linear-gradient(145deg, #565656, #3b3b3b);
+  box-shadow: 0 0 10px #6b63ff;
+}
+
+.page {
+  display: none;
+  padding: 20px;
+  color: white;
+}
+
+.page.active {
+  display: block;
+}
+
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-row {
+  display: flex;
+  gap: 20px;
+}
+
+.project-frame {
+  flex: 1;
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-frame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(107, 99, 255, 0.5);
+}
+
+.project-frame img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.project-frame p {
+  margin-top: 5px;
+  color: white;
+}
+
+.project-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.project-card.wide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+details {
+  background: #2b2b2b;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
+}
+
+details summary::marker {
+  display: none;
+}
+
+details summary::after {
+  content: " ▶";
+  float: right;
+}
+
+details[open] summary::after {
+  content: " ▼";
+}
+
+pre {
+  background: #1a1a1a;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 6px 12px;
+  background: #6b63ff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.download-btn:hover {
+  background: #857fff;
 }
