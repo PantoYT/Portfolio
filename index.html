@@ -8,6 +8,12 @@
 <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("VfcnCXgzgKkElZnNP");
+  })();
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -337,6 +343,114 @@ main {
   text-align: center;
 }
 
+.discord-bots-section {
+  margin-top: 40px;
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.discord-bots-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #5865f2, #7289da);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+.discord-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.discord-header .section-title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.discord-subtitle {
+  color: rgba(224, 224, 224, 0.6);
+  font-size: 14px;
+  margin: 0;
+}
+
+.discord-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.discord-bot-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.discord-bot-card:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+}
+
+.discord-bot-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.discord-bot-content {
+  padding: 20px;
+}
+
+.discord-bot-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+.discord-bot-content p {
+  color: rgba(224, 224, 224, 0.7);
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.discord-bot-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.discord-bot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #5865f2, #4752c4);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.discord-bot-link:hover {
+  background: linear-gradient(135deg, #4752c4, #3c45a5);
+  transform: translateY(-2px);
+}
+
 .scrap-mechanic-section {
   margin-top: 60px;
   background: rgba(26, 26, 26, 0.6);
@@ -477,6 +591,7 @@ main {
   width: 48px;
   height: 48px;
   object-fit: contain;
+  filter: invert(1) brightness(2);
 }
 
 .skill-category h3 {
@@ -548,6 +663,7 @@ main {
   width: 48px;
   height: 48px;
   margin: 0 auto 16px;
+  filter: invert(1) brightness(2);
 }
 
 .contact-card h3 {
@@ -682,10 +798,15 @@ main {
   font-size: 16px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background: linear-gradient(135deg, #4338ca, #3730a3);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
@@ -720,6 +841,29 @@ main {
 .resume-section p {
   margin: 0 0 16px 0;
   color: rgba(224, 224, 224, 0.7);
+}
+
+.form-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+}
+
+.form-message.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  display: block;
+}
+
+.form-message.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  display: block;
 }
 
 @media (max-width: 1024px) {
@@ -763,6 +907,10 @@ main {
   }
 
   .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .discord-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -853,18 +1001,55 @@ main {
         </div>
 
         <div class="project-card">
-          <img src="images/thumbnails/fred_thumb.png" alt="Fred Bot" class="project-image">
+          <img src="images/thumbnails/autosync_thumb.png" alt="AutoSync" class="project-image">
           <div class="project-content">
-            <h3 class="project-title">Fred - Epic Games Bot</h3>
+            <h3 class="project-title">AutoSync</h3>
             <p class="project-description">
-              Discord bot that automatically fetches and posts Epic Games free game offers. Set up a channel, and Fred handles the rest—keeping your server updated with the latest free games.
+              Automated file synchronization tool that keeps directories in sync with customizable rules and real-time monitoring.
             </p>
             <div class="project-tech">
               <span class="tech-tag">Python</span>
-              <span class="tech-tag">Discord.py</span>
-              <span class="tech-tag">API</span>
+              <span class="tech-tag">File System</span>
+              <span class="tech-tag">Automation</span>
             </div>
-            <a href="https://github.com/PantoYT/Fred" target="_blank" class="project-link">View on GitHub →</a>
+            <a href="https://github.com/PantoYT/AutoSync" target="_blank" class="project-link">View on GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="discord-bots-section">
+        <div class="discord-header">
+          <h2 class="section-title">Discord Bots</h2>
+          <p class="discord-subtitle">Automation and utility bots for Discord servers</p>
+        </div>
+        
+        <div class="discord-grid">
+          <div class="discord-bot-card">
+            <img src="images/thumbnails/fred_thumb.png" alt="Fred Bot" class="discord-bot-image">
+            <div class="discord-bot-content">
+              <h3>Fred - Epic Games Bot</h3>
+              <p>Discord bot that automatically fetches and posts Epic Games free game offers. Set up a channel, and Fred handles the rest—keeping your server updated with the latest free games.</p>
+              <div class="discord-bot-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Discord.py</span>
+                <span class="tech-tag">API</span>
+              </div>
+              <a href="https://github.com/PantoYT/Fred" target="_blank" class="discord-bot-link">View on GitHub →</a>
+            </div>
+          </div>
+
+          <div class="discord-bot-card">
+            <img src="images/thumbnails/qred_thumb.png" alt="Qred Bot" class="discord-bot-image">
+            <div class="discord-bot-content">
+              <h3>Qred - Quote Bot</h3>
+              <p>Fred's cousin! A Discord bot for saving and sharing memorable quotes from your server. Capture those perfect moments and bring them back whenever you need a laugh.</p>
+              <div class="discord-bot-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Discord.py</span>
+                <span class="tech-tag">Database</span>
+              </div>
+              <a href="https://github.com/PantoYT/Qred" target="_blank" class="discord-bot-link">View on GitHub →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1019,15 +1204,16 @@ main {
 
         <div class="contact-form-container">
           <h2>Send a Message</h2>
+          <div id="form-message" class="form-message"></div>
           <form id="contact-form">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required>
+              <label for="from_name">Name</label>
+              <input type="text" id="from_name" name="from_name" required>
             </div>
 
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
+              <label for="reply_to">Email</label>
+              <input type="email" id="reply_to" name="reply_to" required>
             </div>
 
             <div class="form-group">
@@ -1098,10 +1284,55 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const contactForm = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+  
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Form submission functionality not implemented yet. This would typically send an email or API request.');
+      
+      const submitBtn = this.querySelector('.btn-primary');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      formMessage.className = 'form-message';
+      formMessage.textContent = '';
+      
+      const serviceID = 'service_m78ovho';
+      const templateID = 'template_gflu8pw';
+      
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          
+          formMessage.className = 'form-message success';
+          formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+          
+          contactForm.reset();
+          fileName.textContent = '';
+          
+          setTimeout(function() {
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+          }, 5000);
+          
+        }, function(error) {
+          console.log('FAILED...', error);
+          
+          formMessage.className = 'form-message error';
+          formMessage.textContent = '✗ Failed to send message. Please try emailing me directly at halasawojciech@gmail.com';
+          
+        })
+        .finally(function() {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
+    });
+    
+    contactForm.addEventListener('reset', function() {
+      fileName.textContent = '';
+      formMessage.className = 'form-message';
+      formMessage.textContent = '';
     });
   }
 });
