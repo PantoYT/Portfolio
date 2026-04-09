@@ -3,916 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wojciech Hałasa - Portfolio</title>
+<title>Wojciech Hałasa</title>
 <link rel="shortcut icon" href="images/avatar.png">
 <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function(){
-    emailjs.init("VfcnCXgzgKkElZnNP");
-  })();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>(function(){ emailjs.init("VfcnCXgzgKkElZnNP"); })();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-* {
-  box-sizing: border-box;
+:root {
+  --bg: #0c0c0f;
+  --surface: #131318;
+  --surface-2: #1a1a22;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(99,102,241,0.35);
+  --accent: #6366f1;
+  --accent-soft: rgba(99,102,241,0.12);
+  --accent-mid: rgba(99,102,241,0.25);
+  --text: #e8e8f0;
+  --text-muted: rgba(232,232,240,0.5);
+  --text-dim: rgba(232,232,240,0.3);
+  --font: 'Instrument Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --sidebar-w: 280px;
 }
 
-html, body {
-  margin: 0;
-  height: 100%;
-  overflow-x: hidden;
-}
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); overflow-x: hidden; }
 
-body {
-  background: #0a0a0a;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #e0e0e0;
-}
+.layout { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 100vh; }
 
-.layout {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  min-height: 100vh;
-}
-
+/* Sidebar */
 .sidebar {
-  background: linear-gradient(165deg, #6366f1 0%, #4338ca 50%, #3730a3 100%);
-  padding: 40px 24px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 32px;
+  padding: 32px 24px;
+  gap: 28px;
   position: sticky;
   top: 0;
   height: 100vh;
   overflow-y: auto;
 }
-
-.avatar {
-  position: relative;
-}
-
-.avatar img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.avatar img:hover {
-  transform: scale(1.05);
-}
-
-.socials {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.socials a {
-  display: block;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.socials img {
-  width: 48px;
-  height: 48px;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
-
-.socials a:hover {
-  transform: translateY(-4px);
-}
-
-.socials a:hover img {
-  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.5));
-}
-
-.bio {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 16px;
-  line-height: 1.6;
-  text-align: center;
-  max-width: 300px;
-}
-
-.bio strong {
-  color: white;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.quick-stats {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  width: 100%;
-  max-width: 300px;
-  backdrop-filter: blur(10px);
-}
-
-.quick-stats h3 {
-  margin: 0 0 16px 0;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.stat-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 14px;
-}
-
-.stat-item:last-child {
-  border-bottom: none;
-}
-
-.stat-label {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.stat-value {
-  color: white;
-  font-weight: 600;
-}
-
-main {
-  background: #0a0a0a;
-  min-height: 100vh;
-}
-
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.navbar button {
-  font-size: 16px;
-  font-weight: 500;
-  padding: 12px 28px;
-  background: rgba(30, 30, 30, 0.8);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  border-radius: 8px;
-  color: #e0e0e0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.navbar button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.navbar button:hover::before {
-  left: 100%;
-}
-
-.navbar button:hover {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-2px);
-}
-
-.navbar button.active {
-  background: linear-gradient(135deg, #6366f1, #4338ca);
-  border-color: #6366f1;
-  color: white;
-}
-
-.page {
-  display: none;
-  padding: 40px 60px 120px 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-  animation: fadeIn 0.3s ease;
-}
-
-.page.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.page h1 {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 32px;
-  font-weight: 400;
-  margin: 0 0 40px 0;
-  color: #6366f1;
-  text-shadow: 2px 2px 0 #a78bfa;
-}
-
-.section-title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 24px;
-  font-weight: 400;
-  margin: 60px 0 30px 0;
-  color: #a78bfa;
-  text-shadow: 2px 2px 0 rgba(99, 102, 241, 0.3);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-.project-card {
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #6366f1, #a78bfa);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover::before {
-  transform: scaleX(1);
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
-}
-
-.project-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.05);
-}
-
-.project-content {
-  padding: 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0 0 12px 0;
-  color: #f0f0f0;
-}
-
-.project-description {
-  color: rgba(224, 224, 224, 0.7);
-  line-height: 1.6;
-  font-size: 14px;
-  flex: 1;
-  margin-bottom: 16px;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.tech-tag {
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  color: #a78bfa;
-}
-
-.project-link {
-  display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #6366f1, #4338ca);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  text-align: center;
-}
-
-.discord-bots-section {
-  margin-top: 40px;
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 12px;
-  padding: 32px;
-  position: relative;
-  overflow: hidden;
-}
-
-.discord-bots-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #5865f2, #7289da);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-.discord-header {
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.discord-header .section-title {
-  margin: 0 0 8px 0;
-  font-size: 20px;
-}
-
-.discord-subtitle {
-  color: rgba(224, 224, 224, 0.6);
-  font-size: 14px;
-  margin: 0;
-}
-
-.discord-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.discord-bot-card {
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.discord-bot-card:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
-}
-
-.discord-bot-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.discord-bot-content {
-  padding: 20px;
-}
-
-.discord-bot-content h3 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #a78bfa;
-  font-weight: 600;
-}
-
-.discord-bot-content p {
-  color: rgba(224, 224, 224, 0.7);
-  line-height: 1.6;
-  font-size: 14px;
-  margin: 0 0 16px 0;
-}
-
-.discord-bot-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-
-.discord-bot-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #5865f2, #4752c4);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.discord-bot-link:hover {
-  background: linear-gradient(135deg, #4752c4, #3c45a5);
-  transform: translateY(-2px);
-}
-
-.scrap-mechanic-section {
-  margin-top: 60px;
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 12px;
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-}
-
-.scrap-mechanic-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #6366f1, #a78bfa, #6366f1);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.scrap-header {
-  margin-bottom: 32px;
-  text-align: center;
-}
-
-.scrap-header .section-title {
-  margin: 0 0 12px 0;
-}
-
-.scrap-subtitle {
-  color: rgba(224, 224, 224, 0.6);
-  font-size: 16px;
-  margin: 0;
-}
-
-.scrap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.scrap-item {
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 8px;
-  padding: 24px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.scrap-item:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
-}
-
-.scrap-item-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.scrap-number {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 14px;
-  color: #6366f1;
-  background: rgba(99, 102, 241, 0.15);
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-}
-
-.scrap-item h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #a78bfa;
-  font-weight: 600;
-}
-
-.scrap-description {
-  color: rgba(224, 224, 224, 0.7);
-  line-height: 1.6;
-  font-size: 14px;
-  margin: 0 0 16px 0;
-}
-
-.scrap-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #6366f1;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: color 0.2s ease;
-}
-
-.scrap-link:hover {
-  color: #a78bfa;
-}
-
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.skill-category {
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  padding: 28px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.skill-category:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
-}
-
-.skill-category-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.skill-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  filter: invert(1) brightness(2);
-}
-
-.skill-category h3 {
-  margin: 0;
-  font-size: 20px;
-  color: #a78bfa;
-  font-weight: 600;
-}
-
-.skill-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skill-list li {
-  padding: 10px 0;
-  color: rgba(224, 224, 224, 0.8);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skill-list li:last-child {
-  border-bottom: none;
-}
-
-.skill-list li:hover {
-  color: #a78bfa;
-  padding-left: 8px;
-}
-
-.skill-list li::before {
-  content: "▹";
-  color: #6366f1;
-  font-weight: bold;
-}
-
-.contact-section {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
-}
-
-.contact-card {
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  padding: 24px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.contact-card:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
-}
-
-.contact-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 16px;
-  filter: invert(1) brightness(2);
-}
-
-.contact-card h3 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #a78bfa;
-}
-
-.contact-card p {
-  margin: 0 0 12px 0;
-  color: rgba(224, 224, 224, 0.6);
-  font-size: 14px;
-}
-
-.contact-card a {
-  color: #6366f1;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-  font-size: 14px;
-}
-
-.contact-card a:hover {
-  color: #a78bfa;
-}
-
-.contact-form-container {
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  padding: 32px;
-  border-radius: 12px;
-  margin-top: 32px;
-}
-
-.contact-form-container h2 {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 20px;
-  margin: 0 0 24px 0;
-  color: #a78bfa;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #e0e0e0;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(20, 20, 20, 0.8);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  border-radius: 8px;
-  color: #e0e0e0;
-  font-family: inherit;
-  font-size: 14px;
-  transition: border-color 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #6366f1;
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.file-upload {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.file-upload input[type="file"] {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.file-upload-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 2px dashed rgba(99, 102, 241, 0.4);
-  border-radius: 8px;
-  color: #a78bfa;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.file-upload-label:hover {
-  background: rgba(99, 102, 241, 0.25);
-  border-color: #6366f1;
-}
-
-.file-name {
-  margin-top: 8px;
-  font-size: 13px;
-  color: rgba(224, 224, 224, 0.6);
-}
-
-.form-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.btn-primary {
-  flex: 1;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #6366f1, #4338ca);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 16px;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4338ca, #3730a3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.btn-primary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-secondary {
-  padding: 12px 24px;
-  background: rgba(99, 102, 241, 0.15);
-  color: #a78bfa;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  font-size: 16px;
-}
-
-.btn-secondary:hover {
-  background: rgba(99, 102, 241, 0.25);
-  border-color: #6366f1;
-}
-
-.resume-section {
-  margin-top: 32px;
-  text-align: center;
-  padding: 24px;
-  background: rgba(26, 26, 26, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 12px;
-}
-
-.resume-section p {
-  margin: 0 0 16px 0;
-  color: rgba(224, 224, 224, 0.7);
-}
-
-.form-message {
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  display: none;
-}
-
-.form-message.success {
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
-  display: block;
-}
-
-.form-message.error {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #f87171;
-  display: block;
-}
-
-@media (max-width: 1024px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .sidebar {
-    position: relative;
-    height: auto;
-  }
-  
-  .page {
-    padding: 32px 24px 80px 24px;
-  }
-  
-  .navbar {
-    position: relative;
-  }
-
-  .page h1 {
-    font-size: 24px;
-  }
-
-  .section-title {
-    font-size: 20px;
-  }
+.avatar img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+.identity h2 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.identity p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.sidebar-divider { height: 1px; background: var(--border); }
+.stats { display: flex; flex-direction: column; gap: 10px; }
+.stat-row { display: flex; justify-content: space-between; font-size: 12px; }
+.stat-row span:first-child { color: var(--text-muted); }
+.stat-row span:last-child { color: var(--text); font-weight: 500; font-family: var(--mono); }
+.socials { display: flex; gap: 12px; margin-top: auto; }
+.socials a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.15s, background 0.15s; }
+.socials a:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+.socials img { width: 18px; height: 18px; filter: brightness(0.5); transition: filter 0.15s; }
+.socials a:hover img { filter: brightness(1); }
+
+/* Main */
+main { background: var(--bg); min-height: 100vh; }
+
+.navbar { display: flex; gap: 2px; padding: 16px 40px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(12,12,15,0.92); backdrop-filter: blur(8px); z-index: 10; }
+.navbar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 7px 16px; background: transparent; border: none; border-radius: 5px; color: var(--text-muted); cursor: pointer; transition: color 0.15s, background 0.15s; }
+.navbar button:hover, .navbar button.active { color: var(--text); background: var(--surface-2); }
+
+/* Pages — centered */
+.page { display: none; padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
+.page.active { display: block; animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.page-header { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.page-header h1 { font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.page-header p { font-size: 13px; color: var(--text-muted); }
+
+/* Project grid — fixed 3 cols */
+.project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.project-card { background: var(--surface); display: flex; flex-direction: column; transition: background 0.15s; }
+.project-card:hover { background: var(--surface-2); }
+.project-image { width: 100%; height: 180px; object-fit: cover; display: block; border-bottom: 1px solid var(--border); }
+.project-content { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.project-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.project-description { font-size: 13px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+.project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+.tech-tag { font-family: var(--mono); font-size: 11px; padding: 3px 8px; background: var(--accent-soft); border: 1px solid var(--accent-mid); border-radius: 4px; color: #a5b4fc; }
+.project-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; margin-top: 4px; transition: color 0.15s; }
+.project-link:hover { color: #a5b4fc; }
+
+/* Sub-sections */
+.sub-section { margin-top: 16px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.sub-section-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
+.sub-section-header h2 { font-size: 13px; font-weight: 600; color: var(--text); }
+.sub-section-header span { font-size: 12px; color: var(--text-muted); }
+
+.bot-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+.bot-card { background: var(--surface); transition: background 0.15s; }
+.bot-card:hover { background: var(--surface-2); }
+.bot-image { width: 100%; height: 160px; object-fit: cover; display: block; border-bottom: 1px solid var(--border); }
+.bot-content { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+.bot-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.bot-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.bot-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+.bot-link:hover { color: #a5b4fc; }
+
+.sm-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+.sm-item { background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; transition: background 0.15s; }
+.sm-item:hover { background: var(--surface-2); }
+.sm-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+.sm-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.sm-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+.sm-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+.sm-link:hover { color: #a5b4fc; }
+
+/* Skills — fixed 3 cols, 2 rows = no orphan cells */
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.skill-cat { background: var(--surface); padding: 20px; transition: background 0.15s; }
+.skill-cat:hover { background: var(--surface-2); }
+.skill-cat-name { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--mono); margin-bottom: 14px; }
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.skill-list li { font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* Contact */
+.contact-wrap { max-width: 640px; }
+.contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+.contact-card { background: var(--surface); padding: 20px; transition: background 0.15s; }
+.contact-card:hover { background: var(--surface-2); }
+.contact-card-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.contact-card a { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500; word-break: break-all; transition: color 0.15s; }
+.contact-card a:hover { color: #a5b4fc; }
+
+.form-wrap { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.form-wrap-header { padding: 14px 20px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 600; color: var(--text-muted); }
+.form-body { padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.form-group input, .form-group textarea { font-family: var(--font); font-size: 13px; padding: 9px 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); transition: border-color 0.15s; outline: none; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.file-upload-label { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--surface-2); border: 1px dashed var(--border); border-radius: 6px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.file-upload-label:hover { border-color: var(--accent); color: var(--text); }
+input[type="file"] { display: none; }
+.file-name { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+.form-actions { display: flex; gap: 8px; }
+.btn-primary { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 9px 20px; background: var(--accent); border: none; border-radius: 6px; color: white; cursor: pointer; transition: background 0.15s; }
+.btn-primary:hover:not(:disabled) { background: #4f52d8; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 9px 20px; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+.form-message { display: none; font-size: 12px; padding: 10px 14px; border-radius: 6px; }
+.form-message.success { display: block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #4ade80; }
+.form-message.error { display: block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
+.resume-note { margin-top: 16px; padding: 14px; border: 1px dashed var(--border); border-radius: 6px; font-size: 12px; color: var(--text-dim); text-align: center; }
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; flex-direction: row; flex-wrap: wrap; padding: 20px; gap: 16px; }
+  .socials { margin-top: 0; }
+  .page { padding: 24px 20px; }
+  .project-grid, .bot-grid { grid-template-columns: 1fr; }
+  .sm-grid { grid-template-columns: repeat(2,1fr); }
+  .skills-grid { grid-template-columns: repeat(2,1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .page h1 {
-    font-size: 20px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .discord-grid {
-    grid-template-columns: 1fr;
-  }
+  .sm-grid { grid-template-columns: 1fr 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -922,38 +184,20 @@ main {
     <div class="avatar">
       <img src="images/avatar.png" alt="Wojciech Hałasa">
     </div>
-
+    <div class="identity">
+      <h2>Wojciech Hałasa</h2>
+      <p>Programming student from Poland. Python, web, tools.</p>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="stats">
+      <div class="stat-row"><span>Location</span><span>Poland 🇵🇱</span></div>
+      <div class="stat-row"><span>Focus</span><span>Python · Web</span></div>
+      <div class="stat-row"><span>Status</span><span>Learning</span></div>
+    </div>
     <div class="socials">
-      <a href="https://github.com/PantoYT" target="_blank" title="GitHub">
-        <img src="images/social/github.png" alt="GitHub">
-      </a>
-      <a href="https://www.youtube.com/@pantoyt" target="_blank" title="YouTube">
-        <img src="images/social/youtube.png" alt="YouTube">
-      </a>
-      <a href="https://steamcommunity.com/id/pantoyt/" target="_blank" title="Steam">
-        <img src="images/social/steam.png" alt="Steam">
-      </a>
-    </div>
-
-    <div class="bio">
-      <p><strong>Wojciech Hałasa</strong></p>
-      <p>Programming student from Poland passionate about building practical solutions, learning new technologies, and solving interesting problems.</p>
-    </div>
-
-    <div class="quick-stats">
-      <h3>Quick Stats</h3>
-      <div class="stat-item">
-        <span class="stat-label">Location</span>
-        <span class="stat-value">Poland 🇵🇱</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Focus</span>
-        <span class="stat-value">Python • Web</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Status</span>
-        <span class="stat-value">Learning</span>
-      </div>
+      <a href="https://github.com/PantoYT" target="_blank" title="GitHub"><img src="images/social/github.png" alt="GitHub"></a>
+      <a href="https://www.youtube.com/@pantoyt" target="_blank" title="YouTube"><img src="images/social/youtube.png" alt="YouTube"></a>
+      <a href="https://steamcommunity.com/id/pantoyt/" target="_blank" title="Steam"><img src="images/social/steam.png" alt="Steam"></a>
     </div>
   </aside>
 
@@ -964,165 +208,164 @@ main {
       <button type="button" data-page="contact">Contact</button>
     </nav>
 
+    <!-- Projects -->
     <section id="projects" class="page active">
-      <h1>Projects</h1>
+      <div class="page-header">
+        <h1>Projects</h1>
+        <p>Things I've built</p>
+      </div>
 
       <div class="project-grid">
         <div class="project-card">
           <img src="images/thumbnails/relax_thumb.png" alt="Relax Skarpety" class="project-image">
           <div class="project-content">
-            <h3 class="project-title">Relax Skarpety</h3>
-            <p class="project-description">
-              Landing page for a sock company featuring modern design and smooth user experience.
-            </p>
+            <div class="project-title">Relax Skarpety</div>
+            <p class="project-description">Landing page for a sock company. Modern design, smooth UX.</p>
             <div class="project-tech">
-              <span class="tech-tag">HTML</span>
-              <span class="tech-tag">CSS</span>
-              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JS</span>
             </div>
-            <a href="https://pantoyt.github.io/Relax-Skarpety/" target="_blank" class="project-link">View Live →</a>
+            <a href="https://pantoyt.github.io/Relax-Skarpety/" target="_blank" class="project-link">View live →</a>
           </div>
         </div>
 
         <div class="project-card">
           <img src="images/thumbnails/fiszki_thumb.png" alt="Fiszki App" class="project-image">
           <div class="project-content">
-            <h3 class="project-title">Fiszki - Flashcard App</h3>
-            <p class="project-description">
-              Offline flashcard learning app with smart weighted randomization. Incorrect answers appear more frequently. Features unit-based organization, progress tracking, and a clean, distraction-free interface. No accounts, no ads—just focused learning.
-            </p>
+            <div class="project-title">Fiszki — Flashcard App</div>
+            <p class="project-description">Offline flashcard app with weighted randomization. Wrong answers appear more often. Unit-based organization, progress tracking, no accounts, no ads.</p>
             <div class="project-tech">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">Tkinter</span>
-              <span class="tech-tag">JSON</span>
+              <span class="tech-tag">Python</span><span class="tech-tag">Tkinter</span><span class="tech-tag">JSON</span>
             </div>
             <a href="https://github.com/PantoYT/Fiszki" target="_blank" class="project-link">View on GitHub →</a>
           </div>
         </div>
 
         <div class="project-card">
-          <img src="images/thumbnails/autosync_thumb.png" alt="AutoSync" class="project-image">
+          <img src="images/thumbnails/tubeyou_thumb.png" alt="TubeYou" class="project-image">
           <div class="project-content">
-            <h3 class="project-title">AutoSync</h3>
-            <p class="project-description">
-              Automated file synchronization tool that keeps directories in sync with customizable rules and real-time monitoring.
-            </p>
+            <div class="project-title">TubeYou</div>
+            <p class="project-description">Self-hosted YouTube clone built from scratch. Video uploads with multi-resolution transcoding, likes, comments, subscriptions, search, channels, and full auth with email verification.</p>
             <div class="project-tech">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">File System</span>
-              <span class="tech-tag">Automation</span>
+              <span class="tech-tag">PHP</span><span class="tech-tag">MariaDB</span><span class="tech-tag">FFmpeg</span>
             </div>
-            <a href="https://github.com/PantoYT/AutoSync" target="_blank" class="project-link">View on GitHub →</a>
+            <a href="https://github.com/PantoYT/TubeYou" target="_blank" class="project-link">View on GitHub →</a>
           </div>
         </div>
       </div>
 
-      <div class="discord-bots-section">
-        <div class="discord-header">
-          <h2 class="section-title">Discord Bots Trilogy</h2>
-          <p class="discord-subtitle">Three specialized bots for automation, quotes, and trivia</p>
+      <!-- Discord Bots -->
+      <div class="sub-section">
+        <div class="sub-section-header">
+          <h2>Discord Bots</h2>
+          <span>trilogy — Fred · Qred · Tred</span>
         </div>
-        
-        <div class="discord-grid">
-          <div class="discord-bot-card">
-            <img src="images/thumbnails/fred_thumb.png" alt="Fred Bot" class="discord-bot-image">
-            <div class="discord-bot-content">
-              <h3>Fred - Free Games Bot</h3>
-              <p>Automatically fetches and posts Epic Games free game offers to your Discord server. Set up a channel with a simple command, and Fred keeps your community updated with the latest free games—no manual checking required.</p>
-              <div class="discord-bot-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Discord.py</span>
-                <span class="tech-tag">RapidAPI</span>
-              </div>
-              <a href="https://github.com/PantoYT/Fred" target="_blank" class="discord-bot-link">View on GitHub →</a>
+        <div class="bot-grid">
+          <div class="bot-card">
+            <img src="images/thumbnails/fred_thumb.png" alt="Fred" class="bot-image">
+            <div class="bot-content">
+              <div class="bot-name">Fred — Free Games</div>
+              <p class="bot-desc">Posts Epic Games free offers to a Discord channel automatically. Set up once, forget about it.</p>
+              <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">discord.py</span><span class="tech-tag">RapidAPI</span></div>
+              <a href="https://github.com/PantoYT/Fred" target="_blank" class="bot-link">GitHub →</a>
             </div>
           </div>
-
-          <div class="discord-bot-card">
-            <img src="images/thumbnails/qred_thumb.png" alt="Qred Bot" class="discord-bot-image">
-            <div class="discord-bot-content">
-              <h3>Qred - Quote Manager</h3>
-              <p>Collect, display, and manage memorable quotes from your server. Browse by author, view random quotes, or get a daily quote. Features automatic date tracking, case-insensitive search, and a date-based daily quote system.</p>
-              <div class="discord-bot-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Discord.py</span>
-                <span class="tech-tag">JSON</span>
-              </div>
-              <a href="https://github.com/PantoYT/Qred" target="_blank" class="discord-bot-link">View on GitHub →</a>
+          <div class="bot-card">
+            <img src="images/thumbnails/qred_thumb.png" alt="Qred" class="bot-image">
+            <div class="bot-content">
+              <div class="bot-name">Qred — Quote Manager</div>
+              <p class="bot-desc">Collect and manage server quotes. Browse by author, random quotes, daily quote by date.</p>
+              <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">discord.py</span><span class="tech-tag">JSON</span></div>
+              <a href="https://github.com/PantoYT/Qred" target="_blank" class="bot-link">GitHub →</a>
             </div>
           </div>
-
-          <div class="discord-bot-card">
-            <img src="images/thumbnails/tred_thumb.png" alt="Tred Bot" class="discord-bot-image">
-            <div class="discord-bot-content">
-              <h3>Tred - Trivia Manager</h3>
-              <p>Comprehensive trivia and fun facts bot with category organization, keyword search, and contributor rankings. Features daily trivia, statistics tracking, and a special "Rave Mode" that cycles through facts every 5 seconds.</p>
-              <div class="discord-bot-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Discord.py</span>
-                <span class="tech-tag">JSON</span>
-              </div>
-              <a href="https://github.com/PantoYT/Tred" target="_blank" class="discord-bot-link">View on GitHub →</a>
+          <div class="bot-card">
+            <img src="images/thumbnails/tred_thumb.png" alt="Tred" class="bot-image">
+            <div class="bot-content">
+              <div class="bot-name">Tred — Trivia Manager</div>
+              <p class="bot-desc">Trivia and fun facts with categories, keyword search, contributor rankings. "Rave Mode" — facts every 5 seconds.</p>
+              <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">discord.py</span><span class="tech-tag">JSON</span></div>
+              <a href="https://github.com/PantoYT/Tred" target="_blank" class="bot-link">GitHub →</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scrap-mechanic-section">
-        <div class="scrap-header">
-          <h2 class="section-title">Scrap Mechanic Creations</h2>
-          <p class="scrap-subtitle">Engineering and automation projects exploring game mechanics</p>
+      <!-- Scrap Mechanic -->
+      <div class="sub-section">
+        <div class="sub-section-header">
+          <h2>Scrap Mechanic Creations</h2>
+          <span>Steam Workshop</span>
         </div>
-        
-        <div class="scrap-grid">
-          <div class="scrap-item">
-            <div class="scrap-item-header">
-              <span class="scrap-number">01</span>
-              <h3>Mortar v4</h3>
-            </div>
-            <p class="scrap-description">A simple work in progress mortar with basic targeting capabilities.</p>
-            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652395493" target="_blank" class="scrap-link">View on Steam →</a>
+        <div class="sm-grid">
+          <div class="sm-item">
+            <div class="sm-num">01</div>
+            <div class="sm-name">Mortar v4</div>
+            <p class="sm-desc">Work in progress mortar with basic targeting.</p>
+            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652395493" target="_blank" class="sm-link">Steam →</a>
           </div>
-
-          <div class="scrap-item">
-            <div class="scrap-item-header">
-              <span class="scrap-number">02</span>
-              <h3>Smart Tank - Leader</h3>
-            </div>
-            <p class="scrap-description">A 4x4 vehicle that can track a tracker, player, or certain coordinates. Features integrated gun system and follower compatibility.</p>
-            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652394847" target="_blank" class="scrap-link">View on Steam →</a>
+          <div class="sm-item">
+            <div class="sm-num">02</div>
+            <div class="sm-name">Smart Tank — Leader</div>
+            <p class="sm-desc">4×4 that tracks a player or coordinates. Integrated gun, follower compatible.</p>
+            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652394847" target="_blank" class="sm-link">Steam →</a>
           </div>
-
-          <div class="scrap-item">
-            <div class="scrap-item-header">
-              <span class="scrap-number">03</span>
-              <h3>Smart Tank - Follower</h3>
-            </div>
-            <p class="scrap-description">Autonomous tank designed to follow the leader tank, creating coordinated multi-vehicle formations.</p>
-            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652394410" target="_blank" class="scrap-link">View on Steam →</a>
+          <div class="sm-item">
+            <div class="sm-num">03</div>
+            <div class="sm-name">Smart Tank — Follower</div>
+            <p class="sm-desc">Autonomous tank that follows the leader in multi-vehicle formations.</p>
+            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652394410" target="_blank" class="sm-link">Steam →</a>
           </div>
-
-          <div class="scrap-item">
-            <div class="scrap-item-header">
-              <span class="scrap-number">04</span>
-              <h3>Minnow</h3>
-            </div>
-            <p class="scrap-description">Compact watercraft equipped with camera-controlled cannons for precise naval combat.</p>
-            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652392649" target="_blank" class="scrap-link">View on Steam →</a>
+          <div class="sm-item">
+            <div class="sm-num">04</div>
+            <div class="sm-name">Minnow</div>
+            <p class="sm-desc">Compact watercraft with camera-controlled cannons for naval combat.</p>
+            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3652392649" target="_blank" class="sm-link">Steam →</a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Skills -->
     <section id="skills" class="page">
-      <h1>Skills</h1>
-      
-      <div class="skills-container">
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/design.svg" alt="Design" class="skill-icon">
-            <h3>Design & Media</h3>
-          </div>
+      <div class="page-header">
+        <h1>Skills</h1>
+        <p>Tools and technologies I work with</p>
+      </div>
+
+      <!-- 3 cols × 2 rows = 6 cells, exactly filled -->
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="skill-cat-name">Programming</div>
+          <ul class="skill-list">
+            <li>Python</li>
+            <li>PHP</li>
+            <li>C++</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="skill-cat">
+          <div class="skill-cat-name">Web & DB</div>
+          <ul class="skill-list">
+            <li>HTML / CSS</li>
+            <li>Laravel</li>
+            <li>MariaDB</li>
+            <li>REST / JSON</li>
+          </ul>
+        </div>
+
+        <div class="skill-cat">
+          <div class="skill-cat-name">Tools</div>
+          <ul class="skill-list">
+            <li>Git</li>
+            <li>Docker</li>
+            <li>FFmpeg</li>
+            <li>Linux</li>
+          </ul>
+        </div>
+
+        <div class="skill-cat">
+          <div class="skill-cat-name">Design & Media</div>
           <ul class="skill-list">
             <li>Aseprite</li>
             <li>Photoshop</li>
@@ -1130,56 +373,16 @@ main {
           </ul>
         </div>
 
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/cad.svg" alt="3D" class="skill-icon">
-            <h3>3D & CAD</h3>
-          </div>
+        <div class="skill-cat">
+          <div class="skill-cat-name">3D & CAD</div>
           <ul class="skill-list">
             <li>Fusion 360</li>
             <li>Bambu Studio</li>
           </ul>
         </div>
 
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/web.svg" alt="Web" class="skill-icon">
-            <h3>Web Development</h3>
-          </div>
-          <ul class="skill-list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>PHP</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/code.svg" alt="Programming" class="skill-icon">
-            <h3>Programming</h3>
-          </div>
-          <ul class="skill-list">
-            <li>Python</li>
-            <li>C++</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/database.svg" alt="Database" class="skill-icon">
-            <h3>Database</h3>
-          </div>
-          <ul class="skill-list">
-            <li>MariaDB</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <img src="icons/tools.svg" alt="Tools" class="skill-icon">
-            <h3>Other</h3>
-          </div>
+        <div class="skill-cat">
+          <div class="skill-cat-name">Other</div>
           <ul class="skill-list">
             <li>Problem-solving</li>
             <li>Robotics</li>
@@ -1189,168 +392,123 @@ main {
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="page">
-      <h1>Contact</h1>
-      
-      <div class="contact-section">
-        <div class="contact-grid">
+      <div class="page-header">
+        <h1>Contact</h1>
+        <p>Get in touch</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-cards">
           <div class="contact-card">
-            <img src="icons/email.svg" alt="Email" class="contact-icon">
-            <h3>Email</h3>
-            <p>Direct communication</p>
+            <div class="contact-card-label">Email</div>
             <a href="mailto:halasawojciech@gmail.com">halasawojciech@gmail.com</a>
           </div>
-
           <div class="contact-card">
-            <img src="icons/github.svg" alt="GitHub" class="contact-icon">
-            <h3>GitHub</h3>
-            <p>Code & repositories</p>
+            <div class="contact-card-label">GitHub</div>
             <a href="https://github.com/PantoYT" target="_blank">@PantoYT</a>
           </div>
-
           <div class="contact-card">
-            <img src="icons/youtube.svg" alt="YouTube" class="contact-icon">
-            <h3>YouTube</h3>
-            <p>Videos & tutorials</p>
+            <div class="contact-card-label">YouTube</div>
             <a href="https://www.youtube.com/@pantoyt" target="_blank">@pantoyt</a>
           </div>
         </div>
 
-        <div class="contact-form-container">
-          <h2>Send a Message</h2>
-          <div id="form-message" class="form-message"></div>
-          <form id="contact-form">
-            <div class="form-group">
-              <label for="from_name">Name</label>
-              <input type="text" id="from_name" name="from_name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="reply_to">Email</label>
-              <input type="email" id="reply_to" name="reply_to" required>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required>
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Attachment (optional)</label>
-              <div class="file-upload">
+        <div class="form-wrap">
+          <div class="form-wrap-header">Send a message</div>
+          <div class="form-body">
+            <div id="form-message" class="form-message"></div>
+            <form id="contact-form">
+              <div class="form-row" style="margin-bottom:16px">
+                <div class="form-group">
+                  <label for="from_name">Name</label>
+                  <input type="text" id="from_name" name="from_name" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                  <label for="reply_to">Email</label>
+                  <input type="email" id="reply_to" name="reply_to" required placeholder="you@example.com">
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom:16px">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="What's this about?">
+              </div>
+              <div class="form-group" style="margin-bottom:16px">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Your message…"></textarea>
+              </div>
+              <div class="form-group" style="margin-bottom:16px">
+                <label>Attachment <span style="color:var(--text-dim);font-weight:400">(optional)</span></label>
+                <label for="file" class="file-upload-label">📎 Choose file</label>
                 <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt">
-                <label for="file" class="file-upload-label">
-                  📎 Choose file
-                </label>
                 <div class="file-name" id="file-name"></div>
               </div>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn-primary">Send Message</button>
-              <button type="reset" class="btn-secondary">Clear Form</button>
-            </div>
-          </form>
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Send</button>
+                <button type="reset" class="btn-secondary">Clear</button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <div class="resume-section">
-          <p>Looking for my resume or CV?</p>
-          <a href="#" class="btn-secondary">Resume in progress...</a>
-        </div>
+        <div class="resume-note">Resume in progress…</div>
       </div>
     </section>
   </main>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const navButtons = document.querySelectorAll('.navbar button');
-  const pages = document.querySelectorAll('.page');
+document.addEventListener('DOMContentLoaded', function () {
+  const navBtns = document.querySelectorAll('.navbar button');
+  const pages   = document.querySelectorAll('.page');
 
-  navButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const targetPage = this.getAttribute('data-page');
-      
-      navButtons.forEach(btn => btn.classList.remove('active'));
-      pages.forEach(page => page.classList.remove('active'));
-      
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      const target = this.dataset.page;
+      navBtns.forEach(b => b.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
       this.classList.add('active');
-      document.getElementById(targetPage).classList.add('active');
+      document.getElementById(target).classList.add('active');
     });
   });
 
   const fileInput = document.getElementById('file');
-  const fileName = document.getElementById('file-name');
-  
+  const fileName  = document.getElementById('file-name');
   if (fileInput) {
-    fileInput.addEventListener('change', function() {
-      if (this.files && this.files[0]) {
-        fileName.textContent = 'Selected: ' + this.files[0].name;
-      } else {
-        fileName.textContent = '';
-      }
+    fileInput.addEventListener('change', function () {
+      fileName.textContent = this.files[0] ? 'Selected: ' + this.files[0].name : '';
     });
   }
 
-  const contactForm = document.getElementById('contact-form');
-  const formMessage = document.getElementById('form-message');
-  
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+  const form    = document.getElementById('contact-form');
+  const message = document.getElementById('form-message');
+  if (form) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      
-      const submitBtn = this.querySelector('.btn-primary');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-      
-      formMessage.className = 'form-message';
-      formMessage.textContent = '';
-      
-      const serviceID = 'service_m78ovho';
-      const templateID = 'template_gflu8pw';
-      
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-          
-          formMessage.className = 'form-message success';
-          formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
-          
-          contactForm.reset();
+      const btn  = this.querySelector('.btn-primary');
+      const orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      message.className = 'form-message';
+      emailjs.sendForm('service_m78ovho', 'template_gflu8pw', this)
+        .then(() => {
+          message.className = 'form-message success';
+          message.textContent = "Sent! I'll get back to you soon.";
+          form.reset();
           fileName.textContent = '';
-          
-          setTimeout(function() {
-            formMessage.className = 'form-message';
-            formMessage.textContent = '';
-          }, 5000);
-          
-        }, function(error) {
-          console.log('FAILED...', error);
-          
-          formMessage.className = 'form-message error';
-          formMessage.textContent = '✗ Failed to send message. Please try emailing me directly at halasawojciech@gmail.com';
-          
+          setTimeout(() => { message.className = 'form-message'; }, 5000);
+        }, () => {
+          message.className = 'form-message error';
+          message.textContent = 'Failed. Email me at halasawojciech@gmail.com';
         })
-        .finally(function() {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        });
+        .finally(() => { btn.textContent = orig; btn.disabled = false; });
     });
-    
-    contactForm.addEventListener('reset', function() {
+    form.addEventListener('reset', function () {
       fileName.textContent = '';
-      formMessage.className = 'form-message';
-      formMessage.textContent = '';
+      message.className = 'form-message';
     });
   }
 });
 </script>
-
 </body>
 </html>
