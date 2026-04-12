@@ -105,9 +105,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 52px; di
 .cta-strip-text { font-size: 13px; font-weight: 600; color: var(--text); }
 .cta-strip-sub { font-size: 12px; color: var(--text-2); margin-top: 2px; }
 
-.project-featured { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: grid; grid-template-columns: 220px 1fr; transition: background 0.12s; }
-.project-featured:hover { background: var(--surface); }
-.project-featured-thumb { background: var(--surface); border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; min-height: 180px; color: var(--border-2); }
+/* ── Projects ── */
+.project-featured {
+  border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+  display: grid; grid-template-columns: 220px 1fr;
+  transition: background 0.12s, border-color 0.2s;
+  position: relative;
+}
+.project-featured:hover { background: var(--surface); border-color: var(--border-2); }
+.project-featured-thumb { background: var(--surface); border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; min-height: 180px; color: var(--border-2); overflow: hidden; }
 .project-featured-thumb img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.35s ease; }
 .project-featured-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; }
 .project-type { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
@@ -118,15 +124,53 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 52px; di
 .project-link { font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; width: fit-content; transition: color 0.15s; }
 .project-link:hover { color: var(--accent-2); }
 
+/* ── Expandable project rows ── */
 .project-list { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-top: 8px; }
-.project-row { display: grid; grid-template-columns: 130px 1fr auto; align-items: center; padding: 13px 18px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; gap: 18px; transition: background 0.12s; }
+
+.project-row {
+  display: grid; grid-template-columns: 130px 1fr auto;
+  align-items: center; padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none; color: inherit; gap: 18px;
+  transition: background 0.12s;
+  cursor: pointer;
+}
 .project-row:last-child { border-bottom: none; }
 .project-row:hover { background: var(--surface); }
 .project-row-type { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
 .project-row-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .project-row-desc { font-size: 12px; color: var(--text-2); margin-top: 2px; }
-.project-row-arrow { color: var(--text-3); font-size: 14px; transition: transform 0.12s; }
-.project-row:hover .project-row-arrow { transform: translateX(3px); }
+.project-row-arrow { color: var(--text-3); font-size: 14px; transition: transform 0.2s; }
+.project-row.open .project-row-arrow { transform: rotate(90deg); }
+
+/* Expanded detail panel */
+.project-detail {
+  display: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0;
+  overflow: hidden;
+}
+.project-detail.visible {
+  display: block;
+  animation: slideDown 0.2s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.project-detail-inner {
+  padding: 20px 18px 20px calc(130px + 18px + 18px);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.project-detail-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; max-width: 600px; }
+.project-detail-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.project-detail-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.project-detail-links a { font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; transition: color 0.15s; }
+.project-detail-links a:hover { color: var(--accent-2); }
+.detail-features { display: flex; flex-direction: column; gap: 4px; }
+.detail-features span { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.detail-features span::before { content: '·'; color: var(--accent); }
 
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
 .why-item { background: var(--bg); padding: 22px; transition: background 0.12s; }
@@ -197,6 +241,7 @@ footer { border-top: 1px solid var(--border); padding: 18px 32px; display: flex;
   .project-featured-thumb { min-height: 100px; border-right: none; border-bottom: 1px solid var(--border); }
   .project-row { grid-template-columns: 1fr auto; }
   .project-row-type { display: none; }
+  .project-detail-inner { padding: 16px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
   .contact-info-row { grid-template-columns: 1fr; }
   .form-2col { grid-template-columns: 1fr; }
@@ -299,9 +344,11 @@ footer { border-top: 1px solid var(--border); padding: 18px 32px; display: flex;
   <section class="section" id="projekty">
     <div class="section-header">
       <div class="section-title">Projekty</div>
-      <div class="section-desc">Co zrobiłem.</div>
+      <div class="section-desc">Kliknij projekt po szczegóły.</div>
     </div>
-    <div class="project-featured">
+
+    <!-- Featured: Relax -->
+    <div class="project-featured" style="margin-bottom:8px">
       <div class="project-featured-thumb">
         <img id="relax-img" src="images/thumbnails/relax_thumb.png" alt="Relax Skarpety preview">
       </div>
@@ -313,22 +360,123 @@ footer { border-top: 1px solid var(--border); padding: 18px 32px; display: flex;
         <a href="https://pantoyt.github.io/Relax-Skarpety/" target="_blank" class="project-link">Zobacz na żywo →</a>
       </div>
     </div>
+
+    <!-- Expandable list -->
     <div class="project-list">
-      <a href="https://github.com/PantoYT/TubeYou" target="_blank" class="project-row">
+
+      <!-- TubeYou -->
+      <div class="project-row" data-target="detail-tubeyou">
         <div class="project-row-type">Web App</div>
-        <div><div class="project-row-name">TubeYou</div><div class="project-row-desc">Self-hosted platforma wideo — auth, komentarze, subskrypcje, transkodowanie FFmpeg.</div></div>
+        <div>
+          <div class="project-row-name">TubeYou</div>
+          <div class="project-row-desc">Self-hosted platforma wideo — auth, komentarze, subskrypcje, transkodowanie FFmpeg.</div>
+        </div>
         <div class="project-row-arrow">→</div>
-      </a>
-      <a href="https://github.com/PantoYT/Fiszki" target="_blank" class="project-row">
+      </div>
+      <div class="project-detail" id="detail-tubeyou">
+        <div class="project-detail-inner">
+          <div class="project-detail-desc">YouTube-inspired platforma zbudowana od zera w PHP bez frameworka. Pełny MVC, własny router, PDO data layer. Obsługuje upload wideo, transkodowanie do 4 jakości przez FFmpeg, streaming z HTTP range support, system powiadomień, playlisty, historia oglądania i wyszukiwanie full-text.</div>
+          <div class="detail-features">
+            <span>Like/dislike, subskrypcje, watch later</span>
+            <span>Komentarze z odpowiedziami, pinowaniem i edycją</span>
+            <span>Email weryfikacja i reset hasła (PHPMailer + Gmail SMTP)</span>
+            <span>Dark mode, rate limiting, CSRF protection</span>
+            <span>Wdrożony na Render + Railway MySQL</span>
+          </div>
+          <div class="project-detail-tags">
+            <span class="tag">PHP 8</span><span class="tag">MariaDB</span><span class="tag">Vanilla JS</span><span class="tag">FFmpeg</span><span class="tag">Docker</span><span class="tag">PHPMailer</span>
+          </div>
+          <div class="project-detail-links">
+            <a href="https://tubeyou-spvl.onrender.com" target="_blank">🌐 Live Demo →</a>
+            <a href="https://github.com/PantoYT/TubeYou" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fiszki -->
+      <div class="project-row" data-target="detail-fiszki">
         <div class="project-row-type">Desktop App</div>
-        <div><div class="project-row-name">Fiszki</div><div class="project-row-desc">Aplikacja do nauki z ważonym losowaniem. Offline, bez konta, bez reklam.</div></div>
+        <div>
+          <div class="project-row-name">Fiszki</div>
+          <div class="project-row-desc">Aplikacja do nauki z ważonym losowaniem. Offline, bez konta, bez reklam.</div>
+        </div>
         <div class="project-row-arrow">→</div>
-      </a>
-      <a href="https://github.com/PantoYT/Fred" target="_blank" class="project-row">
+      </div>
+      <div class="project-detail" id="detail-fiszki">
+        <div class="project-detail-inner">
+          <div class="project-detail-desc">Desktopowa aplikacja do nauki słówek z 32 447 wyrazami z 3 serii podręczników (New Enterprise, English File, Career Paths). Algorytm SM-2 spaced repetition na minutach zamiast dniach — szybsze pętle nauki. Dashboard analityczny, tryb szybkiej powtórki, deck trudnych słów.</div>
+          <div class="detail-features">
+            <span>32 447 słów z 116 plików JSON</span>
+            <span>SM-2 Spaced Repetition (interwały minutowe)</span>
+            <span>Analytics dashboard — 7-dniowe statystyki</span>
+            <span>Auto-update z GitHub, tryb offline</span>
+            <span>Skróty klawiszowe, dark mode, zero telemetrii</span>
+          </div>
+          <div class="project-detail-tags">
+            <span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">SM-2</span><span class="tag">PyMuPDF</span>
+          </div>
+          <div class="project-detail-links">
+            <a href="https://github.com/PantoYT/Fiszki" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sorting -->
+      <div class="project-row" data-target="detail-sorting">
+        <div class="project-row-type">Library</div>
+        <div>
+          <div class="project-row-name">Sorting Algorithms</div>
+          <div class="project-row-desc">100 algorytmów sortowania — od TimSort po QuantumBogoSort. Benchmark + wizualizacja.</div>
+        </div>
+        <div class="project-row-arrow">→</div>
+      </div>
+      <div class="project-detail" id="detail-sorting">
+        <div class="project-detail-inner">
+          <div class="project-detail-desc">Kolekcja 100 algorytmów sortowania w Pythonie. Każdy w osobnym pliku, auto-discovery przez __init__.py. Obejmuje wszystkie 26 liter alfabetu. Od produkcyjnych (TimSort, IntroSort, DualPivotQuickSort) po satyryczne (QuantumBogoSort — O(1) z równoległego wszechświata, StalinSort — zawsze O(n)).</div>
+          <div class="detail-features">
+            <span>Benchmark CLI z filtrowaniem i porównywaniem</span>
+            <span>Animowane wizualizacje matplotlib side-by-side</span>
+            <span>Dodanie nowego algorytmu = jeden plik</span>
+            <span>Pokrycie O(1) → O(∞), stabilne i niestabilne</span>
+          </div>
+          <div class="project-detail-tags">
+            <span class="tag">Python</span><span class="tag">matplotlib</span><span class="tag">algorytmy</span>
+          </div>
+          <div class="project-detail-links">
+            <a href="https://github.com/PantoYT/Sorting" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boty Discord -->
+      <div class="project-row" data-target="detail-bots">
         <div class="project-row-type">Automation</div>
-        <div><div class="project-row-name">Fred / Qred / Tred</div><div class="project-row-desc">Trio botów Discord — powiadomienia, zarządzanie cytatami, trivia z rankingami.</div></div>
+        <div>
+          <div class="project-row-name">Fred / Qred / Tred</div>
+          <div class="project-row-desc">Trio botów Discord — powiadomienia Epic Games, zarządzanie cytatami, trivia z rankingami.</div>
+        </div>
         <div class="project-row-arrow">→</div>
-      </a>
+      </div>
+      <div class="project-detail" id="detail-bots" style="border-bottom:none">
+        <div class="project-detail-inner">
+          <div class="project-detail-desc">Trzy boty Discord z osobnymi domenami. <strong style="color:var(--text)">Fred</strong> — automatyczne powiadomienia o darmowych grach Epic Games przez RapidAPI. <strong style="color:var(--text)">Qred</strong> — zbieranie i wyświetlanie cytatów serwera, daily quote. <strong style="color:var(--text)">Tred</strong> — trivia/funfacts z kategoriami, rankingami kontrybutorów i RAVE MODE.</div>
+          <div class="detail-features">
+            <span>Slash commands, /shutdown owner-only</span>
+            <span>Tred: 7 rang kontrybutorów, wyszukiwanie, /stats</span>
+            <span>Qred: author lookup, date-looping daily quote</span>
+            <span>Fred: Epic Games API integracja</span>
+          </div>
+          <div class="project-detail-tags">
+            <span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">RapidAPI</span>
+          </div>
+          <div class="project-detail-links">
+            <a href="https://github.com/PantoYT/Fred" target="_blank">Fred →</a>
+            <a href="https://github.com/PantoYT/Qred" target="_blank">Qred →</a>
+            <a href="https://github.com/PantoYT/Tred" target="_blank">Tred →</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 </div>
@@ -442,6 +590,7 @@ footer { border-top: 1px solid var(--border); padding: 18px 32px; display: flex;
 </footer>
 
 <script>
+// Theme toggle
 const btn = document.getElementById('theme-toggle');
 const moon = document.getElementById('icon-moon');
 const sun = document.getElementById('icon-sun');
@@ -458,10 +607,12 @@ btn.addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
+// File input
 document.getElementById('file').addEventListener('change', function() {
   document.getElementById('file-name').textContent = this.files[0] ? 'Wybrany: ' + this.files[0].name : '';
 });
 
+// Contact form
 const form = document.getElementById('contact-form');
 const msg  = document.getElementById('form-msg');
 if (form) {
@@ -489,33 +640,42 @@ if (form) {
   });
 }
 
+// Expandable project rows
+document.querySelectorAll('.project-row[data-target]').forEach(row => {
+  row.addEventListener('click', () => {
+    const targetId = row.dataset.target;
+    const detail = document.getElementById(targetId);
+    const isOpen = row.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.project-row.open').forEach(r => r.classList.remove('open'));
+    document.querySelectorAll('.project-detail.visible').forEach(d => d.classList.remove('visible'));
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+      row.classList.add('open');
+      detail.classList.add('visible');
+    }
+  });
+});
+
+// Relax image carousel
 const relaxImages = [
   "images/thumbnails/relax_thumb.png",
   "images/thumbnails/relax_thumb_2.png",
   "images/thumbnails/relax_thumb_3.png"
 ];
-
 let relaxIndex = 0;
 const relaxImg = document.getElementById("relax-img");
-
 if (relaxImg) {
   let interval = setInterval(nextImage, 2600);
-
   function nextImage() {
     relaxIndex = (relaxIndex + 1) % relaxImages.length;
-
     relaxImg.style.opacity = 0;
-
-    setTimeout(() => {
-      relaxImg.src = relaxImages[relaxIndex];
-      relaxImg.style.opacity = 1;
-    }, 200);
+    setTimeout(() => { relaxImg.src = relaxImages[relaxIndex]; relaxImg.style.opacity = 1; }, 200);
   }
-
   relaxImg.addEventListener("mouseenter", () => clearInterval(interval));
-  relaxImg.addEventListener("mouseleave", () => {
-    interval = setInterval(nextImage, 2600);
-  });
+  relaxImg.addEventListener("mouseleave", () => { interval = setInterval(nextImage, 2600); });
 }
 </script>
 </body>
