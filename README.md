@@ -2,7 +2,7 @@
 
 Personal portfolio and landing page for freelance web development services targeting local businesses in Tomaszów Lubelski and surrounding area.
 
-**Live:** https://pantoyt.github.io/ *(or wherever deployed)*
+**Live:** https://me.panto-dev.com
 
 ## Purpose
 
